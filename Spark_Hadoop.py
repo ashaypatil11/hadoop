@@ -14,7 +14,7 @@ myschema = StructType([\
 
 people = spark.read.format("csv")\
     .schema(myschema)\
-    .option("path","file:///SparkCourse/fakefriends.csv")\
+    .option("path","hdfs:///user/maria_dev/spark/friends.csv")\
     .load()
 
 people.printSchema()
@@ -32,7 +32,7 @@ spark.sql("select userID, name from peoples").show()
 
 output.write\
 .format("json").mode("overwrite")\
-.option("path", "file:///output/csv/")\
+.option("path", "hdfs:///user/maria_dev/spark/")\
 .partitionBy("age")\
 .save()
 
