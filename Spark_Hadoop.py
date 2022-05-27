@@ -21,18 +21,16 @@ people.printSchema()
 
 output = people.select(people.userID,people.name\
                        ,people.age,people.friends)\
-         .where(people.age < 30).withColumn('insert_ts', func.current_timestamp())\
+         .where(people.age < 30 ).withColumn('insert_ts', func.current_timestamp())\
          .orderBy(people.userID).cache()
 
 output.createOrReplaceTempView("peoples")
 
-spark.sql("select * from peoples").show()
-
-spark.sql("select userID, name from peoples").show()
+spark.sql("select userID, name from peoples where friends > 100 order by userID").show()
 
 output.write\
 .format("json").mode("overwrite")\
-.option("path", "hdfs:///user/maria_dev/spark/")\
+.option("path", "hdfs:///user/maria_dev/spark/job-output")\
 .partitionBy("age")\
 .save()
 
