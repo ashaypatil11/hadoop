@@ -14,7 +14,7 @@ if __name__ == "__main__":
     getOrCreate()
     
     # Creating RDD on a raw text file
-    lines = spark.sparkContext.textFile("hdfs:///user/maria_dev/ml-100k/u.user")
+    lines = spark.sparkContext.textFile("hdfs:///user/maria_dev/cassandra/movies.user")
     # Convert it to a RDD of Row objects with (userID, age, gender, occupation, zip)
     users = lines.map(parseInput)
     # Convert that to a DataFrame
@@ -24,5 +24,5 @@ if __name__ == "__main__":
     usersDataset.write\
         .format("org.apache.spark.sql.cassandra")\
         .mode('append')\
-        .options(table="users", keyspace="movielens")\
+        .options(table="users", keyspace="moviesdata")\
         .save()
