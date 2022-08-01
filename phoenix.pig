@@ -1,7 +1,7 @@
 set zookeeper.znode.parent '/hbase-unsecure'
 REGISTER /usr/hdp/current/phoenix-client/phoenix-client.jar
 
-users = LOAD '/user/maria_dev/ml-100k/u.user' 
+users = LOAD '/user/maria_dev/movies.user' 
 USING PigStorage('|') 
 AS (USERID:int, AGE:int, GENDER:chararray, OCCUPATION:chararray, ZIP:chararray);
 
