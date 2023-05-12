@@ -16,7 +16,7 @@ if __name__ == "__main__":
     kafka_producer_obj = KafkaProducer(bootstrap_servers=KAFKA_BOOTSTRAP_SERVERS_CONS,
                                        value_serializer=lambda x: x.encode('utf-8'))
     
-    filepath = "G:/SparkCourse/input/iris.csv"
+    filepath = "iris.csv"
     
     flower_df = pd.read_csv(filepath)
   
